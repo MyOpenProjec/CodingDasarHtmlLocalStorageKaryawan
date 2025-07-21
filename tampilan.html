@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>localStorage || index.html</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kode Program: index.html atau yang sering kita sebut tampilan awal atau dashboard sederhana</h2>
+    <p>ini berisi seperti ukuran font dari h1 sampai i</p>
+  <pre id="kode">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Data Karyawan&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;style&gt;
+        .tombol-1 {
+            /* konfigurasi warnanya tombol-1 */
+            background-color: rgb(0, 255, 208);
+        }
+        #tombol-2 {
+            background-color: brown;
+        }
+    &lt;/style&gt;
+    &lt;body&gt;
+        Hellow Word!
+        &lt;!--inline css--&gt;
+        &lt;h1 style=&quot;color: rgb(151, 27, 27);&quot;&gt;Heading 1&lt;/h1&gt;
+        &lt;h2&gt;Heading 2&lt;/h2&gt;
+        &lt;h3&gt;Heading 3&lt;/h3&gt;
+        &lt;h4&gt;Heading 4&lt;/h4&gt;
+        &lt;h5&gt;Heading 5&lt;/h5&gt;
+        &lt;h6&gt;Heading 6&lt;/h6&gt;
+        &lt;p&gt;ini contoh pragraf&lt;/p&gt;
+        &lt;b&gt;ini teks bold&lt;/b&gt;
+        &lt;u&gt;ini teks garis bawah/underline&lt;/u&gt;
+        &lt;i&gt;ini italic&lt;/i&gt;
+        &lt;br/&gt; &lt;br/&gt;
+        &lt;a href=&quot;input.html&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;tombol-1&quot;&gt;KEMBALI KEHALAMAN AWAL&lt;/button&gt;
+        &lt;/a&gt;
+        &lt;br/&gt; &lt;br/&gt;
+        &lt;a href=&quot;data.html&quot;&gt;
+            &lt;button type=&quot;button&quot; id=&quot;tombol-2&quot;&gt;KEMBALI KEHALAMAN DATA&lt;/button&gt;
+        &lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+  </pre>
+
+  <button onclick="copyCode()">Copy Kode</button>
+
+   <button onclick="window.location.href='index.html'">Kembali ke Home</button>
+
+   <a href="input.html">
+    <button type="button">ini halaman input.html</button>
+   </a>
+  <a href="edit.html">
+    <button>ini kodingan edit.html</button>
+  </a>
+    <a href="style.html">
+        <button>ini kodingan style.css</button>
+        </a>
+
+
+
+  <script>
+    function copyCode() {
+      const text = document.getElementById("kode").innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert("Kode berhasil disalin!"))
+        .catch(() => alert("Gagal menyalin kode."));
+    }
+  </script>
+</body>
+</html>

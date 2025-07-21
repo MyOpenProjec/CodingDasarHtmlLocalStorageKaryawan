@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>localStorage || data.html</title>
+  <style>
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jadi ini kode data.Html untuk menampilakn data dalam bentuk table</h1>
+  <h3>Kode Program:</h3>
+  <li>
+    <a href="https://youtu.be/QUpyv31Nyso?si=hwAV029diZssj14z">klik ini untuk refrensi kodingan darimana</a>
+  </li>
+  <pre id="kode">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h4&gt;Data Karyawan&lt;/h4&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;table class=&quot;my-table&quot;&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                &lt;!-- untuk nambah colom yang diperluin tergantung kebutuhan --&gt;
+                    &lt;th&gt;NIM&lt;/th&gt;
+                    &lt;th&gt;NAMA&lt;/th&gt; 
+                    &lt;th&gt;ADDRES&lt;/th&gt;
+                    &lt;th&gt;NOTELP&lt;/th &gt;
+                    &lt;th&gt;AKSI&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+
+            &lt;!-- yang baru --&gt;
+            &lt;tbody id=&quot;tabelData&quot;&gt;
+                &lt;!-- Data akan diisi oleh JavaScript --&gt;
+            &lt;/tbody&gt;
+            
+        &lt;/table&gt;&lt;br/&gt;&lt;br/&gt;
+        &lt;a href=&quot;index.html&quot;&gt;
+            &lt;button class=&quot;tombol-kembali&quot;&gt;HOME&lt;/button&gt;
+        &lt;/a&gt;
+        &lt;a href=&quot;index.html&quot;&gt;
+            &lt;button class=&quot;tombol-input&quot;&gt;input data&lt;/button&gt;
+        &lt;/a&gt;
+        
+    &lt;/body&gt;
+    &lt;script&gt;
+    // Inisialisasi data hanya sekali (jika belum ada)
+    if (!localStorage.getItem(&quot;dataKaryawan&quot;)) {
+      const initialData = [
+        { npm: &quot;12345678&quot;, nama: &quot;LEO&quot;, alamat: &quot;Amerika Serikat&quot;, notelp: &quot;12345678765&quot; },//data awal kalo misalnya belom input di input html
+        { npm: &quot;12345670&quot;, nama: &quot;GUNA&quot;, alamat: &quot;Amerika Serikat&quot;, notelp: &quot;98765456789&quot; }
+      ];
+      localStorage.setItem(&quot;dataKaryawan&quot;, JSON.stringify(initialData));
+    }
+
+    // Ambil ulang data setelah inisialisasi
+    let data = JSON.parse(localStorage.getItem(&quot;dataKaryawan&quot;)) || [];
+
+    // Tampilkan ke tabel
+    const tabel = document.getElementById(&quot;tabelData&quot;);
+    data.forEach((item, index) =&gt; {
+      const row = document.createElement(&quot;tr&quot;);
+      row.innerHTML = `
+        &lt;td&gt;${item.npm}&lt;/td&gt;
+        &lt;td&gt;${item.nama}&lt;/td&gt;
+        &lt;td&gt;${item.alamat}&lt;/td&gt;
+        &lt;td&gt;${item.notelp}&lt;/td&gt;
+        &lt;td&gt;
+          &lt;button class=&quot;btn-edit&quot; onclick=&quot;editData(${index})&quot;&gt;EDIT&lt;/button&gt;
+          &lt;button class=&quot;btn-delete&quot; onclick=&quot;hapusData(${index})&quot;&gt;DELETE&lt;/button&gt;
+        &lt;/td&gt;
+      `;
+      tabel.appendChild(row);
+    });
+
+    // Fungsi hapus
+    function hapusData(index) {
+      if (confirm(&quot;Yakin ingin menghapus data ini?&quot;)) {
+        data.splice(index, 1);
+        localStorage.setItem(&quot;dataKaryawan&quot;, JSON.stringify(data));
+        location.reload();
+      }
+    }
+
+    // Fungsi edit
+    function editData(index) {
+      localStorage.setItem(&quot;editIndex&quot;, index);
+      localStorage.setItem(&quot;editItem&quot;, JSON.stringify(data[index]));
+      window.location.href = &quot;edit.html&quot;;
+    }
+    &lt;/script&gt;
+&lt;/html&gt;
+  </pre>
+
+  <button onclick="copyCode()">Copy Kode</button>
+  <button onclick="window.location.href='index.html'">Kembali ke Home</button>
+  <a href="edit.html">
+    <button>ini kodingan edit.html</button>
+  </a>
+  <a href="tampilan.html">
+    <button>ini kodingan index.html</button>
+  </a>
+  <a href="input.html">
+    <button>ini kodingan input.html</button>
+  </a>
+  <a href="style.html">
+    <button>ini kodingan style.css</button>
+    </a>
+  <script>
+    function copyCode() {
+      const text = document.getElementById("kode").innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert("Kode berhasil disalin!"))
+        .catch(() => alert("Gagal menyalin kode."));
+    }
+  </script>
+</body>
+</html>

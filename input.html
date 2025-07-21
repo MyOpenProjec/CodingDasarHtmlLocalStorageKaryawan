@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>localStorage || input.html</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kode Program: input.html</h2>
+  <pre id="kode">
+&lt;html&gt;
+    &lt;script&gt;
+      function simpanData(event) {
+        event.preventDefault(); // mencegah reload
+        const npm = document.getElementById(&quot;npm&quot;).value;
+        const nama = document.getElementById(&quot;nama&quot;).value;
+        const alamat = document.getElementById(&quot;alamat&quot;).value;
+        const notelp = document.getElementById(&quot;notelp&quot;).value;
+
+        // Simpan ke localStorage (simpan sebagai array of object)
+        const dataKaryawan = JSON.parse(localStorage.getItem(&quot;dataKaryawan&quot;)) || [];
+
+        dataKaryawan.push({
+          npm,
+          nama,
+          alamat,
+          notelp
+        });
+
+        localStorage.setItem(&quot;dataKaryawan&quot;, JSON.stringify(dataKaryawan));
+
+        alert(&quot;Data berhasil disimpan!&quot;);
+        window.location.href = &quot;input.html&quot;;
+      }
+    &lt;/script&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Input Data Karyawan&lt;/h1&gt;
+    &lt;form onsubmit=&quot;simpanData(event)&quot;&gt;
+        &lt;input required placeholder=&quot;masukan Nama&quot; type=&quot;text&quot; id=&quot;nama&quot;/&gt; &lt;br /&gt;&lt;br /&gt;
+        &lt;input placeholder=&quot;masukan Nim&quot; type=&quot;number&quot; id=&quot;npm&quot;/&gt; &lt;br /&gt;&lt;br /&gt;
+        &lt;input placeholder=&quot;masukan No telpon&quot; type=&quot;number&quot; id=&quot;notelp&quot;/&gt;&lt;br/&gt;&lt;br/&gt;
+        &lt;input placeholder=&quot;masukan Addres&quot; type=&quot;text&quot; id=&quot;alamat&quot;/&gt;&lt;br/&gt;&lt;br/&gt;
+        &lt;input placeholder=&quot;Password&quot; type=&quot;Password&quot;/&gt; &lt;br/&gt;&lt;br/&gt;
+        &lt;input placeholder=&quot;Upload foto&quot; type=&quot;file&quot;/&gt; &lt;br/&gt;&lt;br/&gt;
+        &lt;input placeholder=&quot;Tanggal lahir&quot; type=&quot;Date&quot;/&gt; &lt;br/&gt;&lt;br/&gt;
+        &lt;p&gt;Pilih jenis kelamin&lt;/p&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;jenis kelamin&quot;/&gt; Laki-Laki
+        &lt;input type=&quot;radio&quot; name=&quot;jenis kelamin&quot;/&gt; Perempuan &lt;br/&gt;&lt;br/&gt;
+        &lt;select&gt;
+            &lt;option value=&quot;A01&quot;&gt;FAKULTAS TEKNIK&lt;/option&gt;
+            &lt;option value=&quot;A02&quot;&gt;FAKULTAS HUKUM&lt;/option&gt;
+            &lt;option value=&quot;A03&quot;&gt;FAKULTAS KOMUNIKASI&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;P&gt;Pilih Hoby&lt;/P&gt;
+        &lt;input type=&quot;checkbox&quot; name=&quot;Hoby&quot; value=&quot;sepak bola&quot; /&gt;sepak bola
+        &lt;input type=&quot;checkbox&quot; name=&quot;Hoby&quot; value=&quot;Berenang&quot; /&gt; Berenang
+        &lt;input type=&quot;checkbox&quot; name=&quot;Hoby&quot; value=&quot;Menyanyi&quot;/&gt;Menyanyi
+        &lt;br/&gt; &lt;br/&gt;
+        &lt;button type=&quot;submit&quot;&gt;SIMPAN&lt;/button&gt;
+        &lt;a href=&quot;index.html&quot;&gt;
+            &lt;button type=&quot;button&quot;&gt;KEMBALI&lt;/button&gt;
+        &lt;/a&gt;
+    &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+  </pre>
+
+  <button onclick="copyCode()">Copy Kode</button>
+  <button onclick="window.location.href='index.html'">Kembali ke Home</button>
+
+     <a href="style.html">
+        <button>ini kodingan style.css</button>
+        </a>
+
+  <a href="edit.html">
+    <button>ini kodingan edit.html</button>
+  </a>
+  <a href="tampilan.html">
+    <button>ini kodingan index.html</button>
+  </a>
+ 
+
+  <script>
+    function copyCode() {
+      const text = document.getElementById("kode").innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert("Kode berhasil disalin!"))
+        .catch(() => alert("Gagal menyalin kode."));
+    }
+  </script>
+</body>
+</html>

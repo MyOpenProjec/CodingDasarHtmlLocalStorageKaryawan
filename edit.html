@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>localStorage || edit.html</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kode Program: edit.html</h2>
+  <pre id="kode">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Edit Data Karyawan&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Edit Data Karyawan&lt;/h2&gt;
+  &lt;form onsubmit=&quot;simpanPerubahan(event)&quot;&gt;
+    &lt;label&gt;NIM:&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; id=&quot;editNpm&quot; required&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;label&gt;Nama:&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; id=&quot;editNama&quot; required&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;label&gt;NoTelp:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;editNotelp&quot; required&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;label&gt;Alamat:&lt;/label&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; id=&quot;editAlamat&quot; required&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Simpan&lt;/button&gt;
+    &lt;a href=&quot;data.html&quot;&gt;&lt;button type=&quot;button&quot;&gt;Batal&lt;/button&gt;&lt;/a&gt;
+  &lt;/form&gt;
+
+  &lt;script&gt;
+    // Ambil data dari localStorage
+    const data = JSON.parse(localStorage.getItem(&quot;dataKaryawan&quot;)) || [];
+    const index = localStorage.getItem(&quot;editIndex&quot;);
+    const item = JSON.parse(localStorage.getItem(&quot;editItem&quot;));
+
+    // Tampilkan data di input
+    document.getElementById(&quot;editNpm&quot;).value = item.npm;
+    document.getElementById(&quot;editNama&quot;).value = item.nama;
+    document.getElementById(&quot;editNotelp&quot;).value = item.notelp;
+    document.getElementById(&quot;editAlamat&quot;).value = item.alamat;
+
+    function simpanPerubahan(event) {
+      event.preventDefault();
+
+      // Ambil nilai baru dari input
+      data[index] = {
+        npm: document.getElementById(&quot;editNpm&quot;).value,
+        nama: document.getElementById(&quot;editNama&quot;).value,
+        notelp: document.getElementById(&quot;editNotelp&quot;).value,
+        alamat: document.getElementById(&quot;editAlamat&quot;).value
+      };
+
+      // Simpan ke localStorage
+      localStorage.setItem(&quot;dataMahasiswa&quot;, JSON.stringify(data));
+
+      // Bersihkan item sementara
+      localStorage.removeItem(&quot;editIndex&quot;);
+      localStorage.removeItem(&quot;editItem&quot;);
+
+      alert(&quot;Data berhasil diperbarui!&quot;);
+      window.location.href = &quot;data.html&quot;;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </pre>
+
+    <button onclick="copyCode()">Copy Kode</button>
+
+    <button onclick="window.location.href='index.html'">Kembali ke Home</button>
+  
+    <a href="tampilan.html">
+        <button>ini kodingan index.html</button>
+    </a>
+  <a href="input.html">
+    <button>ini kodingan input.html</button>
+  </a>
+  <a href="tampilan.html">
+    <button>ini kodingan index.html</button>
+  </a>
+  <a href="style.html">
+    <button>ini kodingan style.css</button>
+  </a>
+
+  <script>
+    function copyCode() {
+      const text = document.getElementById("kode").innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert("Kode berhasil disalin!"))
+        .catch(() => alert("Gagal menyalin kode."));
+    }
+  </script>
+</body>
+</html>
